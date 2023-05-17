@@ -1,19 +1,115 @@
+import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchPosition } from '../../Store/Slices/Position';
+import { Loader } from '../index';
+
 import './FormRegistration.scss';
 
 export const FormRegistration = () =>{
+  const dispatch = useDispatch();
+  const isLoaded = useSelector(state => state.position.position.status) === "loaded";
+  const positions = useSelector(state => state.position.position.items);
+  const [valueRadio, setValueRadio] = useState(isLoaded ? positions.positions[0].name : '');
+  const [img, setImg] = useState('');
+  
+  useEffect(() => {
+    dispatch(fetchPosition());
+  }, [dispatch]);
+  
+  const changeValue = () => {
+    setValueRadio(event.target.value);
+  }
+  
+  const handleFile = async (e) => {
+      const file = e?.size;
+      if (file > 5242880) {
+        setImg("Please upload file less than 5mb");
+      } else {
+        setImg(e);
+      }
+  };
+  
+  console.log(img);
+  
+  const inputFileRef = useRef(null);
+  
   return (
-    <header className="header">
+    <div className="section section-form-registration">
       <div className="wrapper">
-        <div className="header__items">
-          <a href="/" className="header__items__logo">
-            <img src="img/logo.svg" alt="logo" width="104" height="26"/>
-          </a>
-          <div className="header__items__btns">
-            <a href="#users" className="btn header__items__btns__btn">Users</a>
-            <a href="#sign" className="btn header__items__btns__btn">Sign up</a>
+        <h2 className="section__title">Working with POST request</h2>
+        <div className="form-registration">
+          <div className="custom-input">
+            <input type="input"
+                   className="custom-input__input"
+                   name="name"
+                   id='name' required/>
+            <label htmlFor="name"
+                   className="custom-input__label">Your name</label>
           </div>
+          <div className="custom-input">
+            <input type="input"
+                   className="custom-input__input"
+                   name="email"
+                   id='email' required/>
+            <label htmlFor="email"
+                   className="custom-input__label">Email</label>
+          </div>
+          <div className="custom-input">
+            <input type="input"
+                   className="custom-input__input"
+                   name="phone"
+                   id='phone' required/>
+            <label htmlFor="phone"
+                   className="custom-input__label">Phone</label>
+          </div>
+          <h4 className="form-registration__subtitle">Select your position</h4>
+          {
+            isLoaded
+            ? positions.positions.map(item => (
+                <div className="custom-radio" key={item.id}>
+                  <input type="radio"
+                         id={item.id}
+                         className="custom-radio__input"
+                         name="position"
+                         value={item.name}
+                         checked={valueRadio === item.name}
+                         onChange={changeValue}
+                  />
+                  <label htmlFor={item.id}
+                         className="custom-radio__label"
+                  ><span></span>{item.name}</label>
+                </div>
+              ))
+              : <Loader/>
+          }
+          <div className="upload-img">
+            <input
+              className=""
+              onChange={(e) => handleFile(e.target.files[0])}
+              type="file"
+              name="photo"
+              id="photo"
+              accept="image/jpeg, image/png image/jpg"
+              width={70}
+              required
+              hidden
+            />
+            <label htmlFor="photo" className="upload-img__block">
+              <div className="upload-img__block__btn">Upload</div>
+              <div className="upload-img__block__input">
+                {img ? img?.name?.slice(0, 20) : <p>Upload your photo</p>}
+              </div>
+            </label>
+            <input
+              type="file"
+              onChange={(e) => handleFile(e.target.files[0])}
+              ref={inputFileRef}
+              hidden/>
+          </div>
+          <button className="btn" disabled>Sign up</button>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

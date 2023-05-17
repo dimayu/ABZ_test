@@ -11,8 +11,13 @@ export const User = ({item}) => {
       <h4 className="users__item__name">{item.name}</h4>
       <div className="users__item__description">
         <p className="users__item__description--position">{item.position}</p>
-        <p className="users__item__description--email">{item.email}</p>
-        <p className="users__item__description--phone">{phone}</p>
+        <a href={`mailto:${item.email}`}
+           className="users__item__description--email tooltip"
+        >
+          <span className="tooltip__text">{item.email}</span>
+          {item.email}
+        </a>
+        <a href={`tel:${item.phone}`} className="users__item__description--phone">{phone}</a>
       </div>
     </div>
   );

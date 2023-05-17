@@ -28,12 +28,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
   height: 34px;
   box-sizing: border-box;
   background-color: $yellow;
   border-radius: 80px;
-  padding: 4px 0;
+  padding: 8px 22px;
   color: $black;
   font-size: 16px;
 
@@ -57,5 +56,33 @@
 .section__users {
   .btn {
     margin: auto;
+  }
+}
+
+.section-form-registration {
+  .section__title {
+    margin-top: 148px;
+  }
+}
+
+.tooltip {
+
+  &__text {
+    display: flex;
+    visibility: hidden;
+    background-color: $black;
+    border-radius: 4px;
+    color: #fff;
+    line-height: 26px;
+    padding: 3px 16px;
+    position: absolute;
+    bottom: -20px;
+    z-index: 1;
+  }
+
+  &:hover {
+    .tooltip__text {
+      visibility: visible;
+    }
   }
 }
