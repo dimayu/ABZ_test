@@ -5,7 +5,9 @@ export const User = ({item}) => {
   
   return (
     <div className="users__item">
-      <img className="users__item__photo" src={item.photo} alt={item.name}/>
+      <img className="users__item__photo"
+           src={item.photo}
+           alt={item.name}/>
       <h4 className="users__item__name">{item.name}</h4>
       <div className="users__item__description">
         <p className="users__item__description--position">{item.position}</p>

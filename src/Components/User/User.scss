@@ -12,5 +12,24 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    background-image: url('../../img/photo.svg');
+  }
+
+  &__name {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__description {
+    width: 100%;
+    overflow: hidden;
+
+    &--position, &--email, &--phone {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }

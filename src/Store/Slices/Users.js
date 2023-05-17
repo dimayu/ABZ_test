@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchUsers = createAsyncThunk(
   'users',
-  async function() {
+  async function(count) {
     try {
-      const response = await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=6');
+      const response = await fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?&count=${count}`);
       
       if (!response.ok) {
         throw new Error('Server Error!');
