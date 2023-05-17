@@ -1,0 +1,17 @@
+.header {
+  background-color: #fff;
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+
+    &__btns {
+      display: flex;
+
+      &__btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@import "../../baseStyles/variables";
+@import "../../baseStyles/reset";
+@import "../../baseStyles/smart-grid";
+
+.wrapper {
+  @include wrapper();
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $grey;
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $black;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  box-sizing: border-box;
+  background-color: $yellow;
+  border-radius: 80px;
+  padding: 4px 0;
+  color: $black;
+
+  &:hover {
+    background-color: $yellow-hover;
+  }
+
+  &:disabled {
+    background-color: #B4B4B4;
+    color: rgba(255, 255, 255, 0.87);
+  }
+}
+
+.section__title {
+  margin: 140px 0 50px;
+  font-size: 40px;
+  line-height: 0.8;
+  text-align: center;
+}
