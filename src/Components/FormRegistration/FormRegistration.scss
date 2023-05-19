@@ -36,7 +36,7 @@
     }
 
     &:focus,
-    &.not-empty {
+    &.not-empty, &:not(:placeholder-shown) {
       + .custom-input__label {
         transform: translateY(-30px);
       }

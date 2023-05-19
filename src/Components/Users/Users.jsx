@@ -1,32 +1,37 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import { fetchUsers } from '../../Store/Slices/Users';
 import { Loader, User } from '../index';
+import { getUsers } from '../../API/API';
 
 import './Users.scss';
 
 export const Users = () => {
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(6);
-  const totalCount = useSelector(state => state.users.users.items.total_users);
-  
-  useEffect(() => {
-    dispatch(fetchUsers(count));
-  }, [dispatch, count]);
-  
-  const users = useSelector(state => state.users.users.items.users);
-  const isLoaded = useSelector(state => state.users.users.status) === "loaded";
-  
-  let filterUsers = [];
-  
-  if (isLoaded) {
-    filterUsers = [...users]?.sort((a, b) => (b.registration_timestamp - a.registration_timestamp));
-  }
+  const [count, setCount] = useState(1);
+  const [users, setUsers] = useState([]);
+  const [totalCount, setTotalCount] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
   
   const handleClickCount = () => {
-    setCount(prev => prev + 6);
-  }
+    setCount(prev => prev + 1);
+  };
+  
+  useEffect(() => {
+    getUsers(count).then(data => {
+        if (data) {
+          const users = data.users;
+          const sortedUsers = users.sort((a, b) => (b.registration_timestamp - a.registration_timestamp));
+          setTotalCount(data.total_pages);
+          setIsLoaded(true);
+          
+          if (count === 1) {
+            setUsers(sortedUsers);
+          } else {
+            setUsers((prevState) => [...prevState, ...sortedUsers]);
+          }
+        }
+      }
+    );
+  }, [count]);
   
   return (
     <section className="section section__users" id="users">
@@ -35,7 +40,7 @@ export const Users = () => {
         {
           isLoaded
             ? <div className="users">
-              {filterUsers.map(item => (
+              {users?.map(item => (
                 <User key={item.id} item={item}/>
               ))}
             </div>
