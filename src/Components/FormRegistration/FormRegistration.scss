@@ -1,6 +1,7 @@
 @import "../../baseStyles/variables";
 
 .form-registration {
+  position: relative;
   width: 380px;
   margin: auto;
 
@@ -54,6 +55,23 @@
     background-color: $grey;
     box-sizing: border-box;
     padding: 0 4px;
+  }
+
+  &--error {
+    border: 2px solid $red;
+
+    .custom-input__label {
+      color: $red;
+    }
+  }
+
+  &__error-text {
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 16px;
+    font-size: 12px;
+    line-height: 14px;
+    color: $red;
   }
 }
 
@@ -140,5 +158,26 @@
       padding-left: 16px;
       color: #7E7E7E;
     }
+  }
+}
+
+.success-error {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  text-align: center;
+  bottom: 40px;
+  color: $red;
+}
+
+.success-ok {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+
+  &__img {
+    width: 328px;
   }
 }
