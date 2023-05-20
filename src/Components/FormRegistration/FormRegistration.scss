@@ -1,4 +1,5 @@
 @import "../../baseStyles/variables";
+@import "../../baseStyles/smart-grid";
 
 .form-registration {
   position: relative;
@@ -11,6 +12,10 @@
 
   .btn {
     margin: 50px auto 100px;
+  }
+
+  @include xxs-block() {
+    width: 100%;
   }
 }
 

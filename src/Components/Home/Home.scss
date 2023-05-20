@@ -1,7 +1,27 @@
+@import "../../baseStyles/smart-grid";
+
 .section-home {
   position: relative;
   max-width: 1170px;
   margin: 0 auto;
+
+  @include sm-block() {
+    height: 768px;
+
+    &__bg {
+      height: 100%;
+
+      &--img {
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  @include xxs-block() {
+    height: 500px;
+  }
 
   &__content {
     position: absolute;
@@ -15,6 +35,16 @@
     align-items: center;
     text-align: center;
     color: #fff;
+
+    @include sm-block() {
+      width: 50%;
+      left: 25%;
+    }
+
+    @include xxs-block() {
+      width: calc(100% - 32px);
+      left: 16px;
+    }
 
     &__title {
       margin-bottom: 20px;

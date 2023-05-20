@@ -1,14 +1,14 @@
 # Тестовое задание
 
 
-[Демо]() 
+[Демо](https://abz-test-mocha.vercel.app/) 
 Макет доступен по [ссылке](https://www.figma.com/file/kd6KS8EgJqHBalUrDBsUjA/TESTTASK---2022-(Copy)?type=design&node-id=581-0&t=tNYOlLp8teZI8mpf-0) 
 
 
 
 ## Technologies used:
-React;
-Redux Toolkit;
+React
+SCSS
 
 ## Available Scripts
 

@@ -19,12 +19,16 @@ let settings = {
             fields: '60px'
         },
         md: {
-            width: '940px',
-            fields: '25px'
+            width: '980px',
+            fields: '32px'
         },
         sm: {
             width: '768px',
             fields: '32px'
+        },
+        xxs: {
+            width: '668px',
+            fields: '16px'
         },
         xs: {
             width: '360px',
